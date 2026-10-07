@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-ship:
-    runs-with: ubuntu-latest # The cloud computer GitHub gives you for free
+    runs-on: ubuntu-latest # The cloud computer GitHub gives you for free
 
     steps:
     # Step A: Download the code from your GitHub repository onto the cloud computer

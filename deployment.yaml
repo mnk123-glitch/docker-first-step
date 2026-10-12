@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment
+spec:
+  replicas: 2 # 🚀 This tells Kubernetes to ALWAYS keep 2 identical copies running
+  selector:
+    matchLabels:
+      app: my-web-app
+  template:
+    metadata:
+      labels:
+        app: my-web-app
+    spec:
+      containers:
+      - name: web-container
+        # ⚠️ Change 'mnk123-glitch' below to your actual Docker Hub username!
+        image: meghanank/my-first-webpage:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-web-service
+spec:
+  type: LoadBalancer # 🔌 This routes web traffic from your laptop into the cluster
+  ports:
+  - port: 9000
+    targetPort: 80
+  selector:
+    app: my-web-app
